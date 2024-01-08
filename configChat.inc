@@ -27,17 +27,17 @@ new Iterator:yChat<MAX_PLAYERS>, bool:yChatStatus = true;
 
 hook OnGameModeInit() {
 	Iter_Init(yChat);
-	return 1;
+	return true;
 }
 
 hook OnPlayerDisconnect(playerid, reason) {
 	TogglePlayerChat(playerid, false);		// Don't never remove it :)
-	return 1;
+	return true;
 }
 
 hook OnPlayerConnect(playerid) {
 	TogglePlayerChat(playerid, DEFAULT_CHAT_CONNECT_PLAYER);
-	return 1;
+	return true;
 }
 
 
@@ -100,12 +100,12 @@ stock ySendClientMessage(playerid, color, const message[]) {
 stock ySendClientMessageToAll(color, const message[]) {
 
 	if(yChatStatus == false)
-		return 0;
+		return false;
 
 	foreach(new i: yChat) 
 		SendClientMessage(i, color, message);
 	
-	return 1;
+	return true;
 }
 
 stock ClearPlayerChat(playerid, lines = 30) {
@@ -113,7 +113,7 @@ stock ClearPlayerChat(playerid, lines = 30) {
 	for(new i = 0; i < lines; i++)
 		SendClientMessage(playerid, -1, " ");
 
-	return 1;
+	return true;
 }
 
 stock ClearServerChat(lines = 30) {
@@ -121,7 +121,7 @@ stock ClearServerChat(lines = 30) {
 	for(new i = 0; i < lines; i++)
 		SendClientMessageToAll(-1, " ");
 
-	return 1;
+	return true;
 }
 
 
