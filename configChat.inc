@@ -15,6 +15,14 @@
 
 */
 
+#if defined _inc_chatc
+	#undef _inc_chatc
+#endif
+#if defined _chatc_included
+	#endinput
+#endif
+#define _chatc_included
+
 
 			// Definers
 #define			DEFAULT_CHAT_CONNECT_PLAYER			(true)
